@@ -1,0 +1,25 @@
+name: Static Analysis
+
+on: [push]
+
+jobs:
+  zhila:
+    runs-on: ubuntu-latest
+    name: Static Analysis
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: incremental files
+        run: git config --global core.quotepath false && git diff ${{ github.sha }} ${{ github.sha }}^ --name-only > changed.txt  && cat changed.txt
+
+      - name: zhila
+        uses: tuning003/zhila@main
+        with:
+          service: ${{ secrets.SERVICE }}
+          check_code: ${{ secrets.CHECK_CODE }}
+          language: cpp,python
+          files_path: changed.txt
+          fail_on_warnings: true
