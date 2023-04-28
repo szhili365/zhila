@@ -11,7 +11,7 @@ WORKDIR /workspace
 COPY . .
 
 RUN cd tool \
-    && wget https://github.com/tuning003/zhila/releases/download/v1.1.3/zhila-linux_x86_64-v1.1.3.zip \
+    && wget https://github.com/tuning003/zhila/releases/download/v1.1.4/zhila-linux_x86_64-v1.1.4.zip \
     && unzip *.zip \
     && rm *.zip \
     && mv zhila-* zhila/
