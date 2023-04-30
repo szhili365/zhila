@@ -5,7 +5,7 @@ on: [push]
 jobs:
   zhila:
     runs-on: ubuntu-latest
-    name: Static Analysis
+    name: Full ZHILA Analysis
     steps:
       - name: Checkout
         uses: actions/checkout@v3
