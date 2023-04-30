@@ -64,12 +64,12 @@ class Lancher(object):
                 def worker():
                     try:
                         tmp = task.run()
+                        mutex.acquire()
+                        issues.extend(tmp)
+                        mutex.release()
                     except Exception as e:
                         traceback.print_exc()
                         is_error = True
-                    mutex.acquire()
-                    issues.extend(tmp)
-                    mutex.release()
                 t = threading.Thread(target=worker, name='worker')
                 t.daemon = True
                 t.start()
