@@ -1,0 +1,30 @@
+name: 'zhila'
+description: 'A multi-language static code analysis tool.'
+inputs:
+  service:
+    description: 'Specify License Server url.'
+    required: true
+  check_code:
+    description: 'Specify check code.'
+    required: true
+  language:
+    description: 'Specify the language, such as: -l cpp,oc,cs,java,js,php,go,python'
+  files_path:
+    description: 'Fill in a file path relative to the workspace. The content of the file is a list of files to be scanned, one file per line, in rel path format. If not specified, the entire workspace's code files will be scanned.'
+    required: false
+  fail_on_warnings:
+    description: 'Enable/disable failing the action on warnings.'
+    required: false
+    default: true
+
+outputs:
+  report:
+    description: 'The analysis result.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'check-square'
+  color: 'green'
