@@ -1,6 +1,6 @@
 FROM python:3.7.12-slim
 
-ARG EXTRA_TOOLS="python3-dev git git-lfs vim wget"
+ARG EXTRA_TOOLS="vim wget zip unzip python3-dev git git-lfs"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends $EXTRA_TOOLS
