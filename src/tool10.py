@@ -82,10 +82,13 @@ class Tool_10(BaseTool):
         run_cmd(cmd)
 
         # handle result
-        result = list()
+        tmp: List[Issue] = list()
+        result: List[Issue] = list()
         if os.path.exists(out_path):
             with open(out_path, "r") as f:
-                result = json.load(f, object_hook=lambda d: Issue(*d.values())) 
+                tmp = json.load(f, object_hook=lambda d: Issue(*d.values()))
+        for item in tmp:
+            result.append(item._replace(rule=f"{self.__class__.__name__}/{item.rule}"))
         return result
 
 

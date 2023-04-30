@@ -83,7 +83,7 @@ class Tool_3(BaseTool):
             path = row["path"][relpos:]
             line = int(row["line"])
             column = int(row["column"])
-            rule = row["checker"]
+            rule = f'{self.__class__.__name__}/{row["checker"]}'
             msg = row["description"]
             row_refs = row.get(None, [])
             refs: List[Ref] = list()

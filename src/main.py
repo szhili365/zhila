@@ -61,7 +61,11 @@ class Lancher(object):
                     continue
                 # print(f"task: {task.__class__.__name__}")
                 def worker():
-                    tmp = task.run()
+                    try:
+                        tmp = task.run()
+                    except Exception as e:
+                        print(repr(e))
+                        sys.exit(1)
                     mutex.acquire()
                     issues.extend(tmp)
                     mutex.release()
