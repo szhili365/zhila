@@ -9,6 +9,7 @@ inputs:
     required: true
   language:
     description: 'Specify the language, such as: -l cpp,oc,cs,java,js,php,go,python'
+    required: true
   files_path:
     description: 'Fill in a file path relative to the workspace. The content of the file is a list of files to be scanned, one file per line, in rel path format. If not specified, the entire workspace's code files will be scanned.'
     required: false
@@ -16,15 +17,12 @@ inputs:
     description: 'Enable/disable failing the action on warnings.'
     required: false
     default: true
-
 outputs:
   report:
     description: 'The analysis result.'
-
 runs:
   using: 'docker'
   image: 'Dockerfile'
-
 branding:
   icon: 'check-square'
   color: 'green'

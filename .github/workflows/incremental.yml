@@ -1,4 +1,4 @@
-name: Static Analysis
+name: Incremental ZHILA Analysis
 
 on: [push]
 
@@ -11,10 +11,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
-
       - name: incremental files
         run: git config --global core.quotepath false && git diff ${{ github.sha }} ${{ github.sha }}^ --name-only > changed.txt  && cat changed.txt
-
       - name: zhila
         uses: tuning003/zhila@main
         with:
