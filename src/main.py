@@ -77,6 +77,7 @@ class Lancher(object):
         output_path = os.path.join(self.params.out_dir, "issues.json")
         with open(output_path, "w", encoding="UTF-8") as f:
             json.dump(issues, f, indent=2, ensure_ascii=False)
+        print(f"ZHILA Result: {json.dumps(issues, indent=2, ensure_ascii=False)}")
         
         if self.params.fail_on_warnings and len(issues) > 0:
             sys.exit(1)
