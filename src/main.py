@@ -2,9 +2,9 @@
 # -*- encoding: utf-8 -*-
 
 import os
-from queue import Queue
 import sys
 import json
+import traceback
 import threading
 from typing import List
 
@@ -54,6 +54,7 @@ class Lancher(object):
         issues: List[Issue] = list()
         threads = list()
         mutex = threading.Lock()
+        is_error = False
         for tool in self.tasks:
             task: BaseTool = tool(self.params)
             for lang in self.params.languages:
@@ -61,10 +62,14 @@ class Lancher(object):
                     continue
                 # print(f"task: {task.__class__.__name__}")
                 def worker():
-                    tmp = task.run()
-                    mutex.acquire()
-                    issues.extend(tmp)
-                    mutex.release()
+                    try:
+                        tmp = task.run()
+                        mutex.acquire()
+                        issues.extend(tmp)
+                        mutex.release()
+                    except Exception as e:
+                        traceback.print_exc()
+                        is_error = True
                 t = threading.Thread(target=worker, name='worker')
                 t.daemon = True
                 t.start()
@@ -77,8 +82,9 @@ class Lancher(object):
         output_path = os.path.join(self.params.out_dir, "issues.json")
         with open(output_path, "w", encoding="UTF-8") as f:
             json.dump(issues, f, indent=2, ensure_ascii=False)
+        print(f"ZHILA Result: {json.dumps(issues, indent=2, ensure_ascii=False)}")
         
-        if self.params.fail_on_warnings and len(issues) > 0:
+        if is_error or self.params.fail_on_warnings and len(issues) > 0:
             sys.exit(1)
 
 

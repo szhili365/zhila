@@ -1,13 +1,11 @@
 FROM python:3.7.12-slim
 
-ARG EXTRA_TOOLS="python3-dev git git-lfs vim"
+ARG EXTRA_TOOLS="vim wget zip unzip python3-dev git git-lfs"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends $EXTRA_TOOLS
 
-RUN pip3 install pyyaml==5.3.1
-
-WORKDIR /workspace
+WORKDIR /zhila
 COPY . .
 
 RUN cd tool \
@@ -16,4 +14,4 @@ RUN cd tool \
     && rm *.zip \
     && mv zhila-* zhila/
 
-ENTRYPOINT ["/workspace/entrypoint.sh"]
+ENTRYPOINT ["/zhila/entrypoint.sh"]

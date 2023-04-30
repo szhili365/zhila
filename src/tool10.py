@@ -82,10 +82,14 @@ class Tool_10(BaseTool):
         run_cmd(cmd)
 
         # handle result
-        result = list()
+        tmps = list()
         if os.path.exists(out_path):
             with open(out_path, "r") as f:
-                result = json.load(f, object_hook=lambda d: Issue(*d.values())) 
+                tmps = json.load(f)
+        for item in tmps:
+            item["rule"] = f'{self.__class__.__name__}/{item["rule"]}'
+        tmpstr: str = json.dumps(tmps)
+        result: List[Issue] = json.loads(tmpstr, object_hook=lambda d: Issue(*d.values()))
         return result
 
 

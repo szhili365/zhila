@@ -1,5 +1,3 @@
 #!/bin/bash
 
-pwd
-ls -al
-python3 /workspace/src/main.py
+python3 /zhila/src/main.py
