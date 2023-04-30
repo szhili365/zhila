@@ -13,7 +13,7 @@ RUN cd tool \
     && unzip *.zip \
     && rm *.zip \
     && mv zhila-* zhila/ \
-    && cd .. \
+    && cd zhila \
     && ls -la \
     && pwd
 
