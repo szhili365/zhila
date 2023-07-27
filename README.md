@@ -6,6 +6,11 @@ zhila, a polyglot static analysis tool.
 ### Apply for Authorization
 First, send an email to this mailbox `szhili365@outlook.com` to apply for authorization, and follow the steps in the replied email.
 
+### Steps
+
+1. Setup the License Server in a machine;
+2. Use the CMD below.
+
 ### Command Line
 ```bash
 # Test Case
