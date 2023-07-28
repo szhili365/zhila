@@ -112,12 +112,14 @@ class SubProcess(object):
     def wait(self):
         self.p.wait()
 
+
 def run_cmd(cmd: List) -> None:
     # print(f"run cmd: {' '.join(cmd)}")
     step = SubProcess(cmd, out=print)
     step.wait()
     if step.p.returncode != 0:
         raise CmdError("CMD Run Error!")
+
 
 def get_files(root_dir, want_suffix=""):
     files = set()
