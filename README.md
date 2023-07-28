@@ -8,9 +8,10 @@ First, send an email to this mailbox `szhili365@outlook.com` to apply for author
 
 ### Steps
 
-1. Use `Dockerfile` or download [release pacakage](https://github.com/tuning003/zhila/releases/download/v1.1.5/zhila-linux_x86_64-v1.1.5.zip) directly;
-2. Setup the License Server in a machine;
-3. Use the CMD below.
+1. Use `Dockerfile` or download [zhila binary release pacakage](https://github.com/szhili365/zhila/releases/) directly and unzip it;
+2. Download the latest release `Source code(zip)` and unzip it;
+3. Use the bin file `zhila/license/license` to setup the License Server in a machine (PS: Require a License);
+4. Use the CMD below.
 
 ### Command Line
 ```bash
