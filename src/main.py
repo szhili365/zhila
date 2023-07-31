@@ -18,15 +18,17 @@ from tool.tool4 import Tool_4
 class Lancher(object):
 
     def __init__(self) -> None:
+        input_dir: str = os.path.abspath(os.environ.get("INPUT_TARGET", os.getcwd()))
+        output_dir: str = os.environ.get("INPUT_RESULT", os.path.join(os.getcwd(), "out"))
         self.params = ParamTuple(
             os.environ.get("INPUT_SERVICE"),
             os.environ.get("INPUT_CHECK_CODE"),
             os.environ.get("INPUT_LANGUAGE", "").split(","),
             os.environ.get("INPUT_FILES_PATH"),
-            os.environ.get("INPUT_FAIL_ON_WARNINGS") == 'true',
-            os.path.abspath(os.getcwd()),
-            os.path.basename(os.path.abspath(os.getcwd())),
-            os.path.join(os.getcwd(), "out"),
+            os.environ.get("INPUT_FAIL_ON_WARNINGS") == "true",
+            input_dir,
+            os.path.basename(input_dir),
+            output_dir,
         )
         if self.params.files_path:
             self.params.files_path = os.path.abspath(self.params.files_path)

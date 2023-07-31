@@ -16,7 +16,7 @@ First, send an email to this mailbox `szhili365@outlook.com` to apply for author
 ### Command Line
 ```bash
 # Test Case
-INPUT_SERVICE=http://xxx INPUT_CHECK_CODE=xxx INPUT_LANGUAGE=cpp INPUT_FILES_PATH=test/files_path.txt INPUT_FAIL_ON_WARNINGS=true python3 ./src/main.py
+INPUT_SERVICE=http://xxx INPUT_CHECK_CODE=xxx INPUT_LANGUAGE=cpp INPUT_FILES_PATH=test/files_path.txt INPUT_FAIL_ON_WARNINGS=true INPUT_TARGET=. INPUT_RESULT=out python3 ./src/main.py
 ```
 
 ### Github Action
