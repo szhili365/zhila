@@ -34,6 +34,7 @@ class Tool_4(BaseTool):
         for lang in self.langs:
             if lang in LANG_EXT_MAP:
                 self.exts.extend(LANG_EXT_MAP[lang])
+        self.relpos = len(self.params.project_dir) + 1
 
     def run(self) -> List[Issue]:
         # cmd
@@ -53,6 +54,14 @@ class Tool_4(BaseTool):
         # handle result
         out_path = os.path.join(self.out_dir, "issues.json")
         f = open(out_path)
-        result = json.load(f, object_hook=lambda d: Issue(*d.values()))
+        result = json.load(f, object_hook=self.handle_result)
         f.close()
         return result
+
+    def handle_result(self, item: dict) -> Issue:
+        return Issue(
+            rule=f'{self.__class__.__name__}/{item["rule"]}',
+            line=int(item["line"]),
+            msg=item["msg"],
+            path=item["path"][self.relpos:],
+        )

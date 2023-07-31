@@ -5,7 +5,7 @@ import json
 
 from typing import List
 
-from base import LANG_EXT_MAP, Issue, ParamTuple, run_cmd
+from base import LANG_EXT_MAP, Issue, Ref, ParamTuple, run_cmd
 from tool.base import BaseTool
 from setting import BASE_DIR
 
@@ -84,15 +84,29 @@ class Tool_10(BaseTool):
         run_cmd(cmd)
 
         # handle result
-        tmps = list()
+        result: List[Issue] = list()
         if os.path.exists(out_path):
             with open(out_path, "r") as f:
-                tmps = json.load(f)
-        for item in tmps:
-            item["rule"] = f'{self.__class__.__name__}/{item["rule"]}'
-        tmpstr: str = json.dumps(tmps)
-        result: List[Issue] = json.loads(tmpstr, object_hook=lambda d: Issue(*d.values()))
+                result = json.load(f, object_hook=self.handle_result)
         return result
+
+    def handle_result(self, item: dict):
+        # print(f"item: {item}")
+        if "rule" in item:
+            return Issue(
+                rule=f'{self.__class__.__name__}/{item["rule"]}',
+                line=int(item["line"]),
+                msg=item["msg"],
+                path=item["path"],
+                column=int(item["column"]),
+                refs=item.get("refs", list()),
+            )
+        return Ref(
+            tag=item["tag"],
+            line=int(item["line"]),
+            msg=item["msg"],
+            path=item["path"],
+        )
 
 
 class Tool_10_cpp(Tool_10):
