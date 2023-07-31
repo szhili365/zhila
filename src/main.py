@@ -8,9 +8,11 @@ import traceback
 import threading
 from typing import List
 
-from base import LANG_EXT_MAP, BaseTool, Issue, ParamTuple, get_files
-from tool10 import Tool_10_cpp, Tool_10_go, Tool_10_js, Tool_10_php, Tool_10_python
-from tool3 import Tool_3
+from base import LANG_EXT_MAP, Issue, ParamTuple, get_files
+from tool.base import BaseTool
+from tool.tool10 import Tool_10_cpp, Tool_10_go, Tool_10_js, Tool_10_php, Tool_10_python
+from tool.tool3 import Tool_3
+from tool.tool4 import Tool_4
 
 
 class Lancher(object):
@@ -35,6 +37,7 @@ class Lancher(object):
             Tool_10_php,
             Tool_10_python,
             Tool_3,
+            Tool_4,
         ]
         # print(self.params)
         if self.params.files_path and os.path.isfile(self.params.files_path):

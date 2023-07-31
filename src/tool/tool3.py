@@ -5,7 +5,8 @@ import csv
 import json
 
 from typing import List
-from base import LANG_EXT_MAP, BaseTool, Issue, ParamTuple, Ref, run_cmd
+from base import LANG_EXT_MAP, Issue, ParamTuple, Ref, run_cmd
+from tool.base import BaseTool
 from setting import BASE_DIR
 
 

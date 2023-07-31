@@ -68,9 +68,17 @@ LANG_EXT_MAP = {
     "cs": [".cs"],
     "java": [".java"],
     "js": [".js", ".jsx"],
+    "ts": [".ts", ".tsx"],
     "php": [".php"],
     "go": [".go"],
     "python": [".py"],
+    "kotlin": [".kt"],
+    "lua": [".lua"],
+    "ruby": [".rb"],
+    "scala": [".scala"],
+    "swift": [".swift"],
+    "dart": [".dart"],
+    "rust": [".rs"],
 }
 
 
