@@ -12,6 +12,7 @@ RUN cd tool \
     && wget https://github.com/szhili365/zhila/releases/download/v1.1.6/zhila-linux_x86_64-v1.1.6.zip \
     && unzip *.zip \
     && rm *.zip \
-    && mv zhila-* zhila/
+    && mv zhila-* zhila/ \
+    && chmod +x zhila/bin/*
 
 ENTRYPOINT ["/zhila/entrypoint.sh"]
