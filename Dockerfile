@@ -9,7 +9,7 @@ WORKDIR /zhila
 COPY . .
 
 RUN cd tool \
-    && wget https://github.com/szhili365/zhila/releases/download/v1.1.7/zhila-linux_x86_64-v1.1.7.zip \
+    && wget https://github.com/szhili365/zhila/releases/download/v1.2.1/zhila-linux_x86_64-v1.2.1.zip \
     && unzip *.zip \
     && rm *.zip \
     && mv zhila-* zhila/ \
