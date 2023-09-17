@@ -13,6 +13,7 @@ from tool.base import BaseTool
 from tool.tool10 import Tool_10_cpp, Tool_10_go, Tool_10_js, Tool_10_php, Tool_10_python
 from tool.tool3 import Tool_3
 from tool.tool4 import Tool_4
+from tool.tool6 import Tool_6
 
 
 class Lancher(object):
@@ -40,6 +41,7 @@ class Lancher(object):
             Tool_10_python,
             Tool_3,
             Tool_4,
+            Tool_6,
         ]
         # print(self.params)
         if self.params.files_path and os.path.isfile(self.params.files_path):
